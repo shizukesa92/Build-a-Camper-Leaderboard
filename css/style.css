@@ -5,17 +5,31 @@ html, body {
 
 body {
 	margin: 0;
-	
+	position: relative;
+	padding-bottom: 5vh;
 }
 
 #header {
-background-color: green;
-height: 10vh;
-width: 100vw;
+	background-color: green;
+	height: 10vh;
+	width: 100vw;
 }
 
 #header img {
 	height: 10vh; /* Must specificy height and width for cover to work */
 	width: 100vw;
 	object-fit: cover;
+}
+
+#footer {
+	position: absolute;
+	bottom: 0;
+	height: 5vh;
+	width: 100vw;
+	background-color: green;
+}
+
+#footer b {
+	line-height: 5vh;
+	color: white;
 }
