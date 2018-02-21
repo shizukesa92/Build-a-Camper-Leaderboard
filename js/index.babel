@@ -1,17 +1,42 @@
-class Parent extends React.Component {
+class tableBody extends React.Component {
 
-	constructor(props){
-		super(props);
+
+	render() {
 	}
 
-	render(){
+}
+
+
+class Parent extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			users: [],
+			sort: "recent"
+		}
+	}
+
+	getData = () => {
+	  	$.getJSON("https://fcctop100.herokuapp.com/api/fccusers/top/" + this.state.sort, this.handleData);
+	}
+	handleData = (data) => {
+	  	this.setState({users: data});
+	}
+
+	componentDidMount() {
+	    	this.getData();
+	}
+
+	render() {
 		return (
 			<table>
-				<thead className="text-center">Leaderboard</thead>
+				<thead className= "text-center">Leaderboard</thead>
+				//<tableBody users = {this.state.users} />
 			</table>
 		)
 	}
 
 }
 
-ReactDOM.render(<Parent />, document.getElementById('main'));
+ReactDOM.render(<Parent />, document.getElementById("main"));
