@@ -1,0 +1,17 @@
+class Parent extends React.Component {
+
+	constructor(props){
+		super(props);
+	}
+
+	render(){
+		return (
+			<table>
+				<thead className="text-center">Leaderboard</thead>
+			</table>
+		)
+	}
+
+}
+
+ReactDOM.render(<Parent />, document.getElementById('main'));
