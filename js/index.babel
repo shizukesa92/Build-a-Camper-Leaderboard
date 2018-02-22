@@ -2,9 +2,28 @@ class tableBody extends React.Component {
 
 
 	render() {
-	}
+		var userList = this.props.users.map((camper,number) => {
+				return (
+				<tr>
+				<td className = "userNumber">{number + 1}</td>
+				<td className = "username"><img src = {camper.image} className = "userImg"/>{camper.username}</td>
+				<td className = "recent">{camper.recent}</td>
+				<td className = "alltime">{camper.alltime}</td>
+				</tr>
+			);
+		} 
+);	
 
+
+		return(
+			<tbody>
+				
+{userList}
+			</tbody>
+		);
+	}
 }
+
 
 
 class Parent extends React.Component {
@@ -32,9 +51,9 @@ class Parent extends React.Component {
 		return (
 			<table>
 				<thead className= "text-center">Leaderboard</thead>
-				//<tableBody users = {this.state.users} />
+				<tableBody users = {this.state.users} />
 			</table>
-		)
+		);
 	}
 
 }
