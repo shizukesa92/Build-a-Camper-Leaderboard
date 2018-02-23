@@ -4,21 +4,20 @@ class TableBody extends React.Component {
 	render() {
 		var userList = this.props.users.map((camper,number) => {
 				return (
-				<tr>
-				<td className = "userNumber">{number + 1}</td>
-				<td className = "username"><img src = {camper.image} className = "userImg"/>{camper.username}</td>
-				<td className = "recent">{camper.recent}</td>
-				<td className = "alltime">{camper.alltime}</td>
+				<tr className = "tableBody">
+					<td className = "userNumber">{number + 1}</td>
+					<td className = "username"><img src = {camper.image} className = "userImg"/>{camper.username}</td>
+					<td className = "recent">{camper.recent}</td>
+					<td className = "alltime">{camper.alltime}</td>
 				</tr>
-			);
-		} 
-);	
+				);
+			} 
+		);	
 
 
 		return(
 			<tbody>
-				
-{userList}
+				{userList}
 			</tbody>
 		);
 	}
@@ -49,10 +48,11 @@ class Parent extends React.Component {
 
 	render() {
 		return (
-			<table>
-				<thead className= "text-center">Leaderboard</thead>
-				<TableBody users = {this.state.users} />
-			</table>
+				<div><div id = "tableHead" className = "row text-center">Leaderboard</div>
+			<table className = "table table-striped table-bordered">
+				<TableBody users = {this.state.users} />			
+</table></div>
+
 		);
 	}
 
