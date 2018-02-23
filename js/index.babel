@@ -1,4 +1,4 @@
-class tableBody extends React.Component {
+class TableBody extends React.Component {
 
 
 	render() {
@@ -51,7 +51,7 @@ class Parent extends React.Component {
 		return (
 			<table>
 				<thead className= "text-center">Leaderboard</thead>
-				<tableBody users = {this.state.users} />
+				<TableBody users = {this.state.users} />
 			</table>
 		);
 	}
