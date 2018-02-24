@@ -1,3 +1,20 @@
+class ColumnHeads extends React.Component{
+	render() {
+	    return (
+	      <thead>
+		      <tr>
+			<th>#</th>
+			<th>Camper Name</th> 
+			<th>Points in past 30 days</th>
+			<th>All time points</th>
+		      </tr>
+	      </thead>
+	    );	
+	
+	}
+
+}
+
 class TableBody extends React.Component {
 
 
@@ -48,10 +65,12 @@ class Parent extends React.Component {
 
 	render() {
 		return (
-				<div><div id = "tableHead" className = "row text-center">Leaderboard</div>
-			<table className = "table table-striped table-bordered">
-				<TableBody users = {this.state.users} />			
-</table></div>
+				<div>
+				<div id = "tableHead" className = "row text-center">Leaderboard</div>
+					<table className = "table table-striped table-bordered">
+					<ColumnHeads />		
+					<TableBody users = {this.state.users} />			
+				</table></div>
 
 		);
 	}
