@@ -1,6 +1,23 @@
 class ColumnHeads extends React.Component{
+	 removeSort = () => {
+    var sortables = document.getElementsByClassName("sortable");
+    for (var x = 0; x < sortables.length; x++) {
+      sortables.item(x).className = "sortable";
+    };
+  }	
+  handleClick = (fieldname, event) => {
+    if (!event.target.classList.contains("sorted")) {
+      //this.removeSort();
+      event.target.className = "sortable sorted true"; 
+      this.props.sortTable(fieldname);    
+    }
+  } 
+	
 	render() {
-	    return (
+
+
+		
+	return (
 	      <thead>
 		      <tr>
 			<th>#</th>
