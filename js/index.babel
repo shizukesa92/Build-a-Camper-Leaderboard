@@ -1,16 +1,12 @@
 class ColumnHeads extends React.Component {
-	removeSort = () => {
-		var sortables = document.getElementsByClassName('sortable');
-		for (var x = 0; x < sortables.length; x++) {
-			sortables.item(x).className = 'sortable';
-		}
-	};
 
-	handleClick = (fieldname, event) => {
-		if (!event.target.classList.contains('sorted')) {
-			//this.removeSort();
-			event.target.className = 'sortable sorted true';
-			this.props.sortTable(fieldname);
+	handleClick = (event) => {
+		if (event.target.className== "unsorted") {
+			var sortType = event.target.id;
+			var sortable = event.target.id == "recent" ? document.getElementById("alltime") : document.getElementById("recent");
+sortable.className = "unsorted";
+			event.target.className = "sorted";
+this.props.onSort(sortType);
 		}
 	};
 
@@ -20,8 +16,12 @@ class ColumnHeads extends React.Component {
 				<tr>
 					<th>#</th>
 					<th>Camper Name</th>
-					<th>Points in past 30 days</th>
-					<th>All time points</th>
+					<th className="sorted" id = "recent" onClick={this.handleClick}>
+						Points in past 30 days
+					</th>
+					<th className="unsorted" id = "alltime" onClick={this.handleClick}>
+						All time points
+					</th>
 				</tr>
 			</thead>
 		);
@@ -36,7 +36,7 @@ class TableBody extends React.Component {
 					<td>{number + 1}</td>
 					<td>
 						<img src={camper.img} className="userImg" />
-						{camper.username}
+						&nbsp; {camper.username}
 					</td>
 					<td>{camper.recent}</td>
 					<td>{camper.alltime}</td>
@@ -53,7 +53,7 @@ class Parent extends React.Component {
 		super(props);
 		this.state = {
 			users: [],
-			sort: 'recent',
+			sort: "recent"
 		};
 	}
 
@@ -71,6 +71,11 @@ class Parent extends React.Component {
 		this.getData();
 	}
 
+handleSort = (sortBy) => {
+
+this.setState({sort: sortBy}, this.getData);
+}
+
 	render() {
 		return (
 			<div>
@@ -78,7 +83,7 @@ class Parent extends React.Component {
 					Leaderboard
 				</div>
 				<table className="table table-striped table-bordered">
-					<ColumnHeads />
+					<ColumnHeads onSort = {this.handleSort}/>
 					<TableBody users={this.state.users} />
 				</table>
 			</div>

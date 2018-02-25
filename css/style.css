@@ -55,7 +55,7 @@ tbody,
 	background-color: white;
 }
 
-img {
+tbody img {
 	max-height: 3vh;
 	width: auto;
 }
