@@ -1,97 +1,89 @@
-class ColumnHeads extends React.Component{
-	 removeSort = () => {
-    var sortables = document.getElementsByClassName("sortable");
-    for (var x = 0; x < sortables.length; x++) {
-      sortables.item(x).className = "sortable";
-    };
-  }	
-  handleClick = (fieldname, event) => {
-    if (!event.target.classList.contains("sorted")) {
-      //this.removeSort();
-      event.target.className = "sortable sorted true"; 
-      this.props.sortTable(fieldname);    
-    }
-  } 
-	
-	render() {
+class ColumnHeads extends React.Component {
+	removeSort = () => {
+		var sortables = document.getElementsByClassName('sortable');
+		for (var x = 0; x < sortables.length; x++) {
+			sortables.item(x).className = 'sortable';
+		}
+	};
 
-
-		
-	return (
-	      <thead>
-		      <tr>
-			<th>#</th>
-			<th>Camper Name</th> 
-			<th>Points in past 30 days</th>
-			<th>All time points</th>
-		      </tr>
-	      </thead>
-	    );	
-	
-	}
-
-}
-
-class TableBody extends React.Component {
-
+	handleClick = (fieldname, event) => {
+		if (!event.target.classList.contains('sorted')) {
+			//this.removeSort();
+			event.target.className = 'sortable sorted true';
+			this.props.sortTable(fieldname);
+		}
+	};
 
 	render() {
-		var userList = this.props.users.map((camper,number) => {
-				return (
-				<tr className = "tableBody">
-					<td className = "userNumber">{number + 1}</td>
-					<td className = "username"><img src = {camper.image} className = "userImg"/>{camper.username}</td>
-					<td className = "recent">{camper.recent}</td>
-					<td className = "alltime">{camper.alltime}</td>
+		return (
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Camper Name</th>
+					<th>Points in past 30 days</th>
+					<th>All time points</th>
 				</tr>
-				);
-			} 
-		);	
-
-
-		return(
-			<tbody>
-				{userList}
-			</tbody>
+			</thead>
 		);
 	}
 }
 
+class TableBody extends React.Component {
+	render() {
+		var userList = this.props.users.map((camper, number) => {
+			return (
+				<tr className="tableBody">
+					<td>{number + 1}</td>
+					<td>
+						<img src={camper.img} className="userImg" />
+						{camper.username}
+					</td>
+					<td>{camper.recent}</td>
+					<td>{camper.alltime}</td>
+				</tr>
+			);
+		});
 
+		return <tbody>{userList}</tbody>;
+	}
+}
 
 class Parent extends React.Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {
 			users: [],
-			sort: "recent"
-		}
+			sort: 'recent',
+		};
 	}
 
 	getData = () => {
-	  	$.getJSON("https://fcctop100.herokuapp.com/api/fccusers/top/" + this.state.sort, this.handleData);
-	}
-	handleData = (data) => {
-	  	this.setState({users: data});
-	}
+		$.getJSON(
+			'https://fcctop100.herokuapp.com/api/fccusers/top/' + this.state.sort,
+			this.handleData,
+		);
+	};
+	handleData = data => {
+		this.setState({users: data});
+	};
 
 	componentDidMount() {
-	    	this.getData();
+		this.getData();
 	}
 
 	render() {
 		return (
-				<div>
-				<div id = "tableHead" className = "row text-center">Leaderboard</div>
-					<table className = "table table-striped table-bordered">
-					<ColumnHeads />		
-					<TableBody users = {this.state.users} />			
-				</table></div>
-
+			<div>
+				<div id="tableHead" className="row text-center">
+					Leaderboard
+				</div>
+				<table className="table table-striped table-bordered">
+					<ColumnHeads />
+					<TableBody users={this.state.users} />
+				</table>
+			</div>
 		);
 	}
-
 }
 
-ReactDOM.render(<Parent />, document.getElementById("main"));
+ReactDOM.render(<Parent />, document.getElementById('main'));

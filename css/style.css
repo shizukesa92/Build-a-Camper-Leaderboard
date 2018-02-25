@@ -1,6 +1,8 @@
-html, body {
+html,
+body {
 	height: 100vh;
 	max-width: 100vw;
+	font-family: 'Comic Sans MS', cursive, sans-serif !important;
 }
 
 body {
@@ -33,14 +35,13 @@ body {
 
 table {
 	margin: 0 auto;
-	font-family: "Comic Sans MS", cursive, sans-serif;
 	background-color: white;
 	max-width: 80vw !important;
 }
 
 #tableHead {
 	margin: 2vh auto;
-	margin-bottom:0;
+	margin-bottom: 0;
 	background-color: green;
 	color: white;
 	font-size: 2vw;
@@ -48,9 +49,13 @@ table {
 	max-width: 80vw;
 }
 
-
-
-tbody, #tableBody {
+thead,
+tbody,
+#tableBody {
 	background-color: white;
 }
 
+img {
+	max-height: 3vh;
+	width: auto;
+}
