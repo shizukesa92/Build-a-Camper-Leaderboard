@@ -1,4 +1,4 @@
-# FreeCodeCamp React Project 2: Build-a-Camper-Leaderboard
+# FreeCodeCamp React Project 2: Build a Camper Leaderboard
 
 A website which allows users to type GitHub-flavored Markdown into a text area which is updated with the markdown's output as the user types
 
